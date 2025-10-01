@@ -16,17 +16,17 @@ mongo_logs = mongo_db[MONGO_COLLECTION]
 def log_search(search_type, params, results_count):
     """Сохраняет поисковый запрос в MongoDB."""
     doc = {
-        "timestamp": datetime.now(timezone.utc),
-        "search_type": search_type,
-        "params": params,
-        "results_count": results_count,
+        "timestamp": datetime.now(timezone.utc), # Беру текущее время UT
+        "search_type": search_type,  # Беру тип поиска (например, по ключевому слову или по жанру)
+        "params": params, # Беру параметры запроса, которые ввёл пользователь
+        "results_count": results_count,  # Беру количество найденных результатов
     }
     try:
-        result = mongo_logs.insert_one(doc)
+        result = mongo_logs.insert_one(doc)  # Сохраняю документ в коллекцию
         print(f"Поисковый запрос сохранен в MongoDB, ID: {result.inserted_id}")
     except Exception as e:
-        print("Ошибка сохранения запроса:", e)
+        print("Ошибка сохранения запроса:", e)  # Если не получилось сохранить, вывожу ошибку
 
 def get_logs():
     """Возвращает коллекцию логов для статистики."""
-    return mongo_logs
+    return mongo_logs # Просто возвращаю коллекцию, с которой потом работаю

@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 from log_writer import log_search
 from formatter import format_film
 
-load_dotenv()
+load_dotenv() # Загружаю переменные окружения из .env
+
 
 MYSQL_CONFIG = {
     "host": os.environ.get("MYSQL_HOST"),
@@ -17,10 +18,10 @@ def search_by_title(cursor):
     """Поиск фильмов по названию."""
     keyword = input("Введите слово в названии: ")
     offset = 0
-    limit = 10
+    limit = 10  # Показываю по 10 результатов за раз
     total_results = 0
 
-    while True:
+    while True: # Цикл для постраничного вывода
         sql = """
             SELECT film_id, title, release_year, description
             FROM film
@@ -35,11 +36,11 @@ def search_by_title(cursor):
                 print("Ничего не найдено")
             break
 
-        for film in rows:
+        for film in rows: # Показываю все найденные фильмы
             print(format_film(film))
-            total_results += 1
+            total_results += 1 #Счётчик
 
-        if len(rows) < limit:
+        if len(rows) < limit: # Если меньше 10 результатов, значит конец
             break
 
         show_more = input("Показать ещё? (y/n): ")
@@ -113,6 +114,7 @@ def search_by_year(cursor):
         else:
             params = (year, limit, offset)
 
+    # Сохраняю запрос в MongoDB
     log_search("Год: ", log_params, total_results)
 
 
