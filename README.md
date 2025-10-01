@@ -1,4 +1,4 @@
-# Projekt_02.10.2025
+# Projekt: 02.10.2025
 # Проект по поиску фильмов
 
 # Описание
@@ -26,5 +26,4 @@
 ```bash
 pip install pymysql
 pip install pymongo
-pip install dotenv
-python main.py
+pip install dotenvpython main.py
