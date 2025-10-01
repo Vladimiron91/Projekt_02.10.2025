@@ -47,7 +47,7 @@ def search_by_title(cursor):
             break
         offset += limit
 
-    log_search("Название: ", {"Ключевое слово: ": keyword}, total_results)
+    log_search("Название: ", {"По популярности: ": keyword}, total_results)
 
 
 def search_by_year(cursor):
