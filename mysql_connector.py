@@ -17,7 +17,7 @@ def search_by_title(cursor):
     """Поиск фильмов по названию."""
     keyword = input("Введите слово в названии: ")
     offset = 0
-    limit = 5
+    limit = 10
     total_results = 0
 
     while True:
